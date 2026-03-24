@@ -3,94 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tampu Super App</title>
+<title>Tampu VIP App</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+  font-family: 'Segoe UI', sans-serif;
   color: white;
+  background: url('https://i.pinimg.com/736x/ac/47/7e/ac477e7923915d16545a37be76a3ef2f.jpg') no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
 }
 
-/* HEADER */
-header {
-  padding: 15px;
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  background: #111;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+/* OVERLAY GELAP */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: -1;
 }
 
 /* MENU */
 .menu {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   padding: 15px;
+  flex-wrap: wrap;
 }
 
 .menu button {
-  padding: 10px 15px;
+  padding: 10px 16px;
   border: none;
-  border-radius: 8px;
-  background: #4CAF50;
-  color: white;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  color: #00ffcc;
+  font-weight: bold;
   cursor: pointer;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,255,204,0.3);
   transition: 0.3s;
 }
 
 .menu button:hover {
-  background: #45a049;
-  transform: scale(1.05);
+  background: #00ffcc;
+  color: black;
+  box-shadow: 0 0 15px #00ffcc;
+  transform: translateY(-2px);
 }
 
-/* FRAME */
+/* CONTAINER */
 .container {
-  padding: 10px;
+  width: 95%;
+  height: calc(100vh - 100px);
+  margin: auto;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  overflow: hidden;
+  position: relative;
 }
 
+/* IFRAME */
 iframe {
   width: 100%;
-  height: 75vh;
+  height: 100%;
   border: none;
-  border-radius: 10px;
-  background: white;
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 10px;
-  font-size: 12px;
-  color: #ccc;
+/* LOADING */
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* ANIMASI FADE */
+iframe {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 </style>
 
 </head>
 <body>
 
-<header>
-  🚀 Tampu Super App
-</header>
-
 <div class="menu">
-  <button onclick="loadPage('https://rsltttampu.oneapp.dev/')">App 1</button>
-  <button onclick="loadPage('https://tampu2312.github.io/Togeltampuu/')">App 2</button>
+  <button onclick="goHome()">🏠 Home</button>
+  <button onclick="loadPage('https://rsltttampu.oneapp.dev/')">📊 Pasaran</button>
+  <button onclick="loadPage('https://tampu2312.github.io/Togeltampuu/')">🎯 Result</button>
 </div>
 
 <div class="container">
-  <iframe id="frame" src=""></iframe>
+  <div id="loading" class="loading">Pilih menu untuk mulai...</div>
+  <iframe id="frame" src="" onload="hideLoading()"></iframe>
 </div>
 
-<footer>
-  © 2026 Tampu App
-</footer>
-
 <script>
+function goHome() {
+  document.getElementById("frame").src = "";
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("loading").innerText = "Pilih menu untuk mulai...";
+}
+
 function loadPage(url) {
   document.getElementById("frame").src = url;
+  document.getElementById("loading").style.display = "block";
+}
+
+function hideLoading() {
+  document.getElementById("loading").style.display = "none";
 }
 </script>
 
