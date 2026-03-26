@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -101,6 +102,7 @@ iframe {
   <button onclick="goHome()">🏠 Home</button>
   <button onclick="loadPage('https://rsltttampu.oneapp.dev/')">📊 Pasaran</button>
   <button onclick="loadPage('https://tampu2312.github.io/Togeltampuu/')">🎯 Result</button>
+<button onclick="loadPage('https://monitorbank.oneapp.dev/')">🎯 JAM BANK</button>
 </div>
 
 <div class="container">
@@ -124,6 +126,39 @@ function hideLoading() {
   document.getElementById("loading").style.display = "none";
 }
 </script>
+<script>
+// Mencegah klik kanan
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+  alert('Klik kanan dinonaktifkan!');
+});
 
+// Mencegah F12, Ctrl+Shift+I, Ctrl+U, Ctrl+Shift+J
+document.addEventListener('keydown', function(e) {
+  // F12
+  if(e.key === "F12") {
+    e.preventDefault();
+    alert('F12 dinonaktifkan!');
+  }
+
+  // Ctrl+Shift+I
+  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
+    e.preventDefault();
+    alert('Inspect Element dinonaktifkan!');
+  }
+
+  // Ctrl+Shift+J
+  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'j') {
+    e.preventDefault();
+    alert('Console dinonaktifkan!');
+  }
+
+  // Ctrl+U
+  if(e.ctrlKey && e.key.toLowerCase() === 'u') {
+    e.preventDefault();
+    alert('Melihat source code dinonaktifkan!');
+  }
+});
+</script>
 </body>
 </html>
